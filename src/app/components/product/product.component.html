@@ -7,4 +7,24 @@
     Price:
     <span class="font-bold"> {{ product.price | currency : "RUB" }}</span>
   </p>
+  <button
+    class="border py-2 px-4 rounded bg-yellow-400"
+    [ngClass]="{
+      'bg-yellow-400': !details,
+      'bg-blue-400': details,
+    }"
+    (click)="details = !details"
+  >
+    {{ details ? "Hide" : "Show" }} details
+  </button>
+
+  <div *ngIf="details">
+    <p class="flex flex-row items-center">{{ product.description }}</p>
+    <p class="flex items-center">
+      Rate:
+      <span [ngStyle]="{ fontWeight: 'bold' }">{{
+        product.rating.rate | number : "1.1-4"
+      }}</span>
+    </p>
+  </div>
 </div>
